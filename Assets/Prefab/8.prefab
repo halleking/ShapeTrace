@@ -1228,6 +1228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeName: EIGHT
+  vowelSound: 1
   checkpoints:
   - {fileID: 5840482424508746312}
   - {fileID: 249911199864617013}

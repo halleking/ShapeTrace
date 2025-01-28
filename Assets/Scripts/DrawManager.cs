@@ -17,7 +17,8 @@ public class DrawManager : MonoBehaviour
 
     private void Start()
     {
-        instructionsText.text = $"Plant the seeds in a {shapesController.CurrentShape.ShapeName}";
+        var indefArticle = shapesController.CurrentShape.VowelSound ? "an" : "a";
+        instructionsText.text = $"Plant the seeds in {indefArticle} {shapesController.CurrentShape.ShapeName}";
         _checkpoints = shapesController.CurrentShape.Checkpoints;
         HighlightNextNode(_checkpointIndex);
     }
@@ -93,7 +94,8 @@ public class DrawManager : MonoBehaviour
         if (shapesController.CurrentShape != null)
         {
             _checkpoints = shapesController.CurrentShape.Checkpoints;
-            instructionsText.text = $"Plant the seeds in a {shapesController.CurrentShape.ShapeName}";
+            var indefArticle = shapesController.CurrentShape.VowelSound ? "an" : "a";
+            instructionsText.text = $"Plant the seeds in {indefArticle} {shapesController.CurrentShape.ShapeName}";
             HighlightNextNode(_checkpointIndex);
         }
         else

@@ -5,10 +5,12 @@ using UnityEngine;
 public class ShapeController : MonoBehaviour
 {
     [SerializeField] private string shapeName;
+    [SerializeField] private bool vowelSound;
     [SerializeField] private Transform[] checkpoints;
     public List<Vector2> Checkpoints { get; } = new List<Vector2>();
     public List<NodeController> NodeControllers = new List<NodeController>();
     public string ShapeName => shapeName;
+    public bool VowelSound => vowelSound;
 
     private void Awake()
     {
