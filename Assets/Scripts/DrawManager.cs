@@ -12,6 +12,7 @@ public class DrawManager : MonoBehaviour
     private List<LineController> _lines = new List<LineController>();
     private LineController _currentLine;
     private List<Vector2> _checkpoints;
+    private int _checkpointIndex = 0;
     private bool _isComplete = false;
 
     private void Start()
@@ -39,6 +40,7 @@ public class DrawManager : MonoBehaviour
                 _lines.Add(newLine);
                 _currentLine = newLine;
                 newLine.OnShapeFilled += HandleShapeFilled;
+                newLine.OnCheckpointFilled += HandleCheckpointFilled;
             }
         }
         else
@@ -48,6 +50,15 @@ public class DrawManager : MonoBehaviour
                 _currentLine.StopDraw();
                 _currentLine = null;
             }
+        }
+    }
+
+    private void HandleCheckpointFilled()
+    {
+        if (shapesController.CurrentShape.NodeControllers.Count > _checkpointIndex)
+        {
+            shapesController.CurrentShape.NodeControllers[_checkpointIndex].PlaceSeed();
+            _checkpointIndex++;
         }
     }
 
@@ -66,7 +77,7 @@ public class DrawManager : MonoBehaviour
         // delay before continuing
         yield return new WaitForSeconds(5f);
 
-        ResetLines();
+        ResetShape();
         shapesController.InitShape();
         if (shapesController.CurrentShape != null)
         {
@@ -83,7 +94,7 @@ public class DrawManager : MonoBehaviour
     }
 
 
-    private void ResetLines()
+    private void ResetShape()
     {
         foreach (var line in _lines)
         {
@@ -92,6 +103,7 @@ public class DrawManager : MonoBehaviour
         }
 
         _lines.Clear();
+        _checkpointIndex = 0;
     }
 
 }

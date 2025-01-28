@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,12 +7,14 @@ public class LineController : MonoBehaviour
     [SerializeField] private LineRenderer line;
     [SerializeField] private float minDistance = 0.1f;
     [SerializeField] private float width = 0.5f;
+    [SerializeField] private float acceptanceDistance = 0.5f;
 
     private Vector3 _previousPosition;
     private bool _isDrawing = false;
     private List<Vector2> _checkpoints;
 
     public event Action OnShapeFilled;
+    public event Action OnCheckpointFilled;
 
     private void Start()
     {
@@ -60,9 +61,10 @@ public class LineController : MonoBehaviour
                         return;
                     }
 
-                    if (Vector3.Distance(currentPosition, _checkpoints[0]) < 1f)
+                    if (Vector3.Distance(currentPosition, _checkpoints[0]) < acceptanceDistance)
                     {
                         // visited checkpoint
+                        OnCheckpointFilled?.Invoke();
                         _checkpoints.RemoveAt(0);
                     }
                 }
