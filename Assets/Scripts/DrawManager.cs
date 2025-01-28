@@ -17,8 +17,9 @@ public class DrawManager : MonoBehaviour
 
     private void Start()
     {
-        _checkpoints = shapesController.CurrentShape.Checkpoints;
         instructionsText.text = $"Plant the seeds in a {shapesController.CurrentShape.ShapeName}";
+        _checkpoints = shapesController.CurrentShape.Checkpoints;
+        HighlightNextNode(_checkpointIndex);
     }
 
     private void Update()
@@ -58,6 +59,8 @@ public class DrawManager : MonoBehaviour
         if (shapesController.CurrentShape.NodeControllers.Count > _checkpointIndex)
         {
             shapesController.CurrentShape.NodeControllers[_checkpointIndex].PlaceSeed();
+            shapesController.CurrentShape.NodeControllers[_checkpointIndex].Highlight(false);
+            HighlightNextNode(_checkpointIndex + 1);
             _checkpointIndex++;
         }
     }
@@ -72,6 +75,14 @@ public class DrawManager : MonoBehaviour
         StartCoroutine(Next());
     }
 
+    private void HighlightNextNode(int nextIndex)
+    {
+        if (shapesController.CurrentShape.NodeControllers.Count > nextIndex)
+        {
+            shapesController.CurrentShape.NodeControllers[nextIndex].Highlight(true);
+        }
+    }
+
     private IEnumerator Next()
     {
         // delay before continuing
@@ -83,6 +94,7 @@ public class DrawManager : MonoBehaviour
         {
             _checkpoints = shapesController.CurrentShape.Checkpoints;
             instructionsText.text = $"Plant the seeds in a {shapesController.CurrentShape.ShapeName}";
+            HighlightNextNode(_checkpointIndex);
         }
         else
         {

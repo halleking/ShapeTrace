@@ -9,6 +9,7 @@ public class NodeController : MonoBehaviour
     [SerializeField] private Image[] petals;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform seed;
+    [SerializeField] private GameObject highlight;
 
     private float _delay;
     private Vector2 _position;
@@ -17,6 +18,7 @@ public class NodeController : MonoBehaviour
 
     private void Awake()
     {
+      
         _position = transform.position;
         _delay = Random.Range(0, 0.5f);
 
@@ -24,6 +26,11 @@ public class NodeController : MonoBehaviour
         var euler = transform.eulerAngles;
         euler.z = Random.Range(0f, 360f);
         seed.eulerAngles = euler;
+    }
+
+    public void Highlight(bool enable)
+    {
+        highlight.gameObject.SetActive(enable);
     }
 
     public void PlaceSeed()
