@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -54,20 +55,31 @@ public class DrawManager : MonoBehaviour
     {
         _isComplete = true;
         instructionsText.text = $"Great Job!";
-        Debug.Log("SHAPE FILLED!");
-
-
         shapesController.CurrentShape.PlayGrowAnimation();
 
 
+        StartCoroutine(Next());
+    }
 
-        //ResetLines();
+    private IEnumerator Next()
+    {
+        // delay before continuing
+        yield return new WaitForSeconds(5f);
 
+        ResetLines();
+        shapesController.InitShape();
+        if (shapesController.CurrentShape != null)
+        {
+            _checkpoints = shapesController.CurrentShape.Checkpoints;
+            instructionsText.text = $"Plant the seeds in a {shapesController.CurrentShape.ShapeName}";
+        }
+        else
+        {
+            _checkpoints.Clear();
+            instructionsText.text = "";
+        }
+        _isComplete = false;
 
-        //shapesController.InitShape();
-        //_checkpoints = shapesController.CurrentShape.Checkpoints;
-        //instructionsText.text = $"Plant the seeds in a {shapesController.CurrentShape.ShapeName}";
-        //_isComplete = false;
     }
 
 
@@ -80,9 +92,6 @@ public class DrawManager : MonoBehaviour
         }
 
         _lines.Clear();
-        
     }
-
-
 
 }
