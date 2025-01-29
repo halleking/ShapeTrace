@@ -93,7 +93,7 @@ public class GameController : MonoBehaviour
     private IEnumerator Next()
     {
         // delay before continuing
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
 
         ResetShape();
         shapesController.InitShape();

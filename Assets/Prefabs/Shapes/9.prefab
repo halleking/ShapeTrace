@@ -391,6 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeName: NINE
+  vowelSound: 0
   checkpoints:
   - {fileID: 3999503578885446577}
   - {fileID: 5584785178961438822}
@@ -746,8 +747,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -94.7, y: -260.2}
-  m_SizeDelta: {x: 25, y: 25}
+  m_AnchoredPosition: {x: -88, y: -261.9}
+  m_SizeDelta: {x: 50, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1270459727688398565
 CanvasRenderer:

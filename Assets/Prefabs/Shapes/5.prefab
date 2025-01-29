@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeName: FIVE
+  vowelSound: 0
   checkpoints:
   - {fileID: 239808837361284120}
   - {fileID: 5752787270558458929}
@@ -290,8 +291,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -104.5, y: -251.5}
-  m_SizeDelta: {x: 25, y: 25}
+  m_AnchoredPosition: {x: -99.8, y: -257}
+  m_SizeDelta: {x: 50, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3553620933228777276
 CanvasRenderer:
