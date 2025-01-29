@@ -9,8 +9,9 @@ public class ShapesController : MonoBehaviour
 
     private List<GameObject> _shuffled;
 
-    private void Awake()
+    public void Initialize(Category category)
     {
+        //TODO add handling for different categories
         System.Random rand = new();
         _shuffled = shapes.ToList();
 

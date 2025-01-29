@@ -617,6 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeName: ZERO
+  vowelSound: 0
   checkpoints:
   - {fileID: 7046984079915850066}
   - {fileID: 510369594472086899}
@@ -631,6 +632,7 @@ MonoBehaviour:
   - {fileID: 2069201326411420830}
   - {fileID: 4492095032895996242}
   - {fileID: 2488365161064821458}
+  text: {fileID: 6300039109598013600}
   NodeControllers: []
 --- !u!1 &4136028060789064074
 GameObject:

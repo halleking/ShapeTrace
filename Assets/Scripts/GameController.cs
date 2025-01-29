@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class DrawManager : MonoBehaviour
+public class GameController : MonoBehaviour
 {
     [SerializeField] private ShapesController shapesController;
     [SerializeField] private GameObject line;
@@ -15,8 +16,13 @@ public class DrawManager : MonoBehaviour
     private int _checkpointIndex = 0;
     private bool _isComplete = false;
 
-    private void Start()
+    public bool EnableDrawing { get; set; } = false;
+    public event Action OnSequenceComplete;
+
+    public void Initialize(Category category)
     {
+        shapesController.Initialize(category);
+
         var indefArticle = shapesController.CurrentShape.VowelSound ? "an" : "a";
         instructionsText.text = $"Plant the seeds in {indefArticle} {shapesController.CurrentShape.ShapeName}";
         _checkpoints = shapesController.CurrentShape.Checkpoints;
@@ -25,7 +31,7 @@ public class DrawManager : MonoBehaviour
 
     private void Update()
     {
-        if (_isComplete)
+        if (_isComplete || !EnableDrawing)
         {
             return;
         }
@@ -33,7 +39,7 @@ public class DrawManager : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-           if (_currentLine == null)
+            if (_currentLine == null)
             {
                 // Instantiate a new Line Renderer object at the mouse position
                 GameObject lineObj = Instantiate(line, transform);
@@ -102,6 +108,7 @@ public class DrawManager : MonoBehaviour
         {
             _checkpoints.Clear();
             instructionsText.text = "";
+            OnSequenceComplete?.Invoke();
         }
         _isComplete = false;
 
